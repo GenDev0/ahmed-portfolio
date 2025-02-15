@@ -1,0 +1,36 @@
+version: "3.8"
+
+services:
+  dashboard-tachkila-frontend:
+    build:
+      context: .
+      dockerfile: prod.Dockerfile
+    ports:
+      - "5000" # Expose port only for the first instance
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.dashboard-tachkila-frontend.rule=Host(`dashboard-tachkila.genydev.com`)"
+      - "traefik.http.routers.dashboard-tachkila-frontend.entrypoints=websecure"
+      - "traefik.http.routers.dashboard-tachkila-frontend.tls=true"
+      - "traefik.http.routers.dashboard-tachkila-frontend.tls.certresolver=le"
+      - "traefik.http.routers.dashboard-tachkila-frontend.tls.domains[0].main=dashboard-tachkila.genydev.com"
+      - "traefik.http.middlewares.dashboard-tachkila-frontend-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.dashboard-tachkila-frontend.middlewares=dashboard-tachkila-frontend-redirect"
+    volumes:
+      - "~/shared_vps/traefik/certs:/letsencrypt" # Ensure correct path and permissions for volumes
+    networks:
+      - traefikNetwork
+      - dashboard-tachkilaNet
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:3000/ || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+networks:
+  traefikNetwork:
+    external: true
+  dashboard-tachkilaNet:
+    driver: bridge
+    internal: true
