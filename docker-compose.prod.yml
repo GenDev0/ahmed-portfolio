@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: prod.Dockerfile
     ports:
-      - "5001" # Expose port only for the first instance
+      - "6000" # Expose port only for the first instance
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.ahmed-portfolio-frontend.rule=Host(`ahmed-portfolio.genydev.com`)"
