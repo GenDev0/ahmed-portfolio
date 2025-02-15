@@ -1,65 +1,65 @@
-# name: Deploy to VPS
+name: Deploy to VPS
 
-# on:
-#   push:
-#     branches:
-#       - main
+on:
+  push:
+    branches:
+      - main
 
-# jobs:
-#   deploy:
-#     runs-on: ubuntu-latest
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
 
-#     steps:
-#       - name: Checkout code
-#         uses: actions/checkout@v4
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-#       - name: Set up SSH
-#         run: |
-#           mkdir -p ~/.ssh
-#           echo "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/id_rsa_pitching_deploy
-#           chmod 600 ~/.ssh/id_rsa_pitching_deploy
-#           ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/id_rsa_global
+          chmod 600 ~/.ssh/id_rsa_global
+          ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts
 
-#       - name: Deploy to VPS
-#         run: |
-#           ssh -o ConnectTimeout=60 -i ~/.ssh/id_rsa_pitching_deploy ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }} << 'EOF'
-#             set -e
+      - name: Deploy to VPS
+        run: |
+          ssh -o ConnectTimeout=60 -i ~/.ssh/id_rsa_global ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }} << 'EOF'
+            set -e
 
-#             # Navigate to the project directory
-#             cd ~/shared_vps/projects/arena-book/soccer-book-client
+            # Navigate to the project directory
+            cd ~/shared_vps/projects/ahmed-portfolio
 
-#             # Pull the latest changes
-#             git checkout main
-#             git pull git@github.com:GenDev0/soccer-book-client.git
+            # Pull the latest changes using the global GitHub SSH config
+            git checkout main
+            git pull origin main
 
-#             # Check if the dashboard-tachkila-frontend container is running
-#             if [ "$(docker ps -q -f name=dashboard-tachkila-frontend)" ]; then
-#               echo "dashboard-tachkila-frontend container exists. Scaling up for zero-downtime deployment."
+            # Check if the ahmed-portfolio-frontend container is running
+            if [ "$(docker ps -q -f name=ahmed-portfolio-frontend)" ]; then
+              echo "ahmed-portfolio-frontend container exists. Scaling up for zero-downtime deployment."
 
-#               # Scale up dashboard-tachkila-frontend to 2 instances
-#               docker compose -f docker-compose.prod.yml up --scale dashboard-tachkila-frontend=2 -d --build
+              # Scale up ahmed-portfolio-frontend to 2 instances
+              docker compose -f docker-compose.prod.yml up --scale ahmed-portfolio-frontend=2 -d --build
 
-#               # Wait for the new container to become healthy
-#               echo "Waiting for the new container instance to be healthy..."
-#               until [ "$(docker inspect -f '{{.State.Health.Status}}' $(docker ps -q -f name=dashboard-tachkila-frontend | tail -n 1))" == "healthy" ]; do
-#                 echo "Current health status: $(docker inspect -f '{{.State.Health.Status}}' $(docker ps -q -f name=dashboard-tachkila-frontend | tail -n 1))"
-#                 sleep 5
-#               done
+              # Wait for the new container to become healthy
+              echo "Waiting for the new container instance to be healthy..."
+              until [ "$(docker inspect -f '{{.State.Health.Status}}' $(docker ps -q -f name=ahmed-portfolio-frontend | tail -n 1))" == "healthy" ]; do
+                echo "Current health status: $(docker inspect -f '{{.State.Health.Status}}' $(docker ps -q -f name=ahmed-portfolio-frontend | tail -n 1))"
+                sleep 5
+              done
 
-#               # Remove the old instance
-#               echo "Stopping and removing the old container instance..."
-#               docker compose -f docker-compose.prod.yml up --scale dashboard-tachkila-frontend=1 -d --build
+              # Remove the old instance
+              echo "Stopping and removing the old container instance..."
+              docker compose -f docker-compose.prod.yml up --scale ahmed-portfolio-frontend=1 -d --build
 
-#               # Clean up unused Docker images
-#               docker image prune -a -f
-#               # Clean up unused Docker builds
-#               docker builder prune --all -f
+              # Clean up unused Docker images
+              docker image prune -a -f
+              # Clean up unused Docker builds
+              docker builder prune --all -f
+              
+              echo "Deployment complete with zero downtime."
+            else
+              echo "No running ahmed-portfolio-frontend container found. Deploying for the first time."
 
-#               echo "Deployment complete with zero downtime."
-#             else
-#               echo "No running dashboard-tachkila-frontend container found. Deploying for the first time."
-
-#               # Deploy the initial version
-#               docker compose -f docker-compose.prod.yml up -d --build dashboard-tachkila-frontend
-#             fi
-#           EOF
+              # Deploy the initial version
+              docker compose -f docker-compose.prod.yml up -d --build ahmed-portfolio-frontend
+            fi
+          EOF
