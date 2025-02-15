@@ -20,6 +20,9 @@ jobs:
           chmod 600 ~/.ssh/id_rsa_global
           ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts
 
+      - name: Test SSH Connection
+        run: ssh -i ~/.ssh/id_rsa_global ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }} "echo 'SSH connection successful!'"
+
       - name: Deploy to VPS
         run: |
           ssh -o ConnectTimeout=60 -i ~/.ssh/id_rsa_global ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }} << 'EOF'
