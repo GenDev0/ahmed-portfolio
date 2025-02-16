@@ -1,5 +1,6 @@
 "use client";
 
+/* eslint-disable @next/next/no-img-element */
 import { useState } from "react";
 
 import { IoCopyOutline } from "react-icons/io5";
@@ -11,8 +12,7 @@ import { cn } from "@/lib/utils";
 
 import MagicButton from "../magic-button";
 import { BackgroundGradientAnimation } from "./gradient-bg";
-
-// import GridGlobe from "./grid-globe";
+import GridGlobe from "./grid-globe";
 
 export const BentoGrid = ({
   className,
@@ -39,7 +39,6 @@ export const BentoGridItem = ({
   id,
   title,
   description,
-  //   remove unecessary things here
   img,
   imgClassName,
   titleClassName,
@@ -82,8 +81,6 @@ export const BentoGridItem = ({
         className
       )}
       style={{
-        //   add these two
-        //   you can generate the color from here https://cssgradient.io/
         background: "rgb(4,7,29)",
         backgroundColor:
           "linear-gradient(90deg, rgba(4,7,29,1) 0%, rgba(12,14,35,1) 100%)",
@@ -127,20 +124,17 @@ export const BentoGridItem = ({
             "relative flex min-h-40 flex-col p-5 px-5 transition duration-200 group-hover/bento:translate-x-2 md:h-full lg:p-10"
           )}
         >
-          {/* change the order of the title and des, font-extralight, remove text-xs text-neutral-600 dark:text-neutral-300 , change the text-color */}
-          <div className="z-10 font-sans text-sm font-extralight text-[#C1C2D3] md:max-w-32 md:text-xs lg:text-base">
-            {description}
-          </div>
-          {/* add text-3xl max-w-96 , remove text-neutral-600 dark:text-neutral-300*/}
-          {/* remove mb-2 mt-2 */}
           <div
             className={`z-10 max-w-96 font-sans text-lg font-bold lg:text-3xl`}
           >
             {title}
           </div>
+          <div className="z-10 font-sans text-sm font-extralight text-[#C1C2D3] md:max-w-32 md:text-xs lg:text-base">
+            {description}
+          </div>
 
           {/* for the github 3d globe */}
-          {/* {id === 2 && <GridGlobe />} */}
+          {id === 2 && <GridGlobe />}
 
           {/* Tech stack list div */}
           {id === 3 && (
