@@ -12,7 +12,7 @@ RUN apk add --no-cache libc6-compat
 COPY package.json package-lock.json ./ 
 
 # Install dependencies using npm
-RUN npm ci
+RUN npm ci --force
 RUN npm install sharp
 
 # Build the application
