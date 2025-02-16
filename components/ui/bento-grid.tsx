@@ -3,16 +3,16 @@
 /* eslint-disable @next/next/no-img-element */
 import { useState } from "react";
 
-import { IoCopyOutline } from "react-icons/io5";
+import { IoCheckboxOutline, IoCopyOutline } from "react-icons/io5";
 // Also install this npm i --save-dev @types/react-lottie
 import Lottie from "react-lottie";
 
 import animationData from "@/data/confetti.json";
 import { cn } from "@/lib/utils";
 
-import MagicButton from "../magic-button";
 import { BackgroundGradientAnimation } from "./gradient-bg";
 import GridGlobe from "./grid-globe";
+import MagicButton from "./magic-button";
 
 export const BentoGrid = ({
   className,
@@ -24,7 +24,6 @@ export const BentoGrid = ({
   return (
     <div
       className={cn(
-        // change gap-4 to gap-8, change grid-cols-3 to grid-cols-5, remove md:auto-rows-[18rem], add responsive code
         "md:grid-row-7 mx-auto grid grid-cols-1 gap-4 md:grid-cols-6 lg:grid-cols-5 lg:gap-8",
         className
       )}
@@ -53,8 +52,8 @@ export const BentoGridItem = ({
   titleClassName?: string;
   spareImg?: string;
 }) => {
-  const leftLists = ["ReactJS", "Express", "Typescript"];
-  const rightLists = ["VueJS", "NuxtJS", "GraphQL"];
+  const leftLists = ["NextJs", "Typescript", "Angular"];
+  const rightLists = ["NestJS", "PostgreSQL", "GraphQL"];
 
   const [copied, setCopied] = useState(false);
 
@@ -71,12 +70,14 @@ export const BentoGridItem = ({
     const text = "chebbi.ahmed.info@gmail.com";
     navigator.clipboard.writeText(text);
     setCopied(true);
+    setTimeout(() => {
+      setCopied(false);
+    }, 3000);
   };
 
   return (
     <div
       className={cn(
-        // remove p-4 rounded-3xl dark:bg-black dark:border-white/[0.2] bg-white  border border-transparent, add border border-white/[0.1] overflow-hidden relative
         "group/bento relative row-span-1 flex flex-col justify-between space-y-4 overflow-hidden rounded-3xl border border-white/[0.1] shadow-input transition duration-200 hover:shadow-xl dark:shadow-none",
         className
       )}
@@ -111,12 +112,7 @@ export const BentoGridItem = ({
             />
           )}
         </div>
-        {id === 6 && (
-          // add background animation , remove the p tag
-          <BackgroundGradientAnimation>
-            <div className="pointer-events-none absolute inset-0 z-50 flex items-center justify-center px-4 text-center text-3xl font-bold text-white md:text-4xl lg:text-7xl"></div>
-          </BackgroundGradientAnimation>
-        )}
+        {id === 6 && <BackgroundGradientAnimation />}
 
         <div
           className={cn(
@@ -166,22 +162,28 @@ export const BentoGridItem = ({
           )}
           {id === 6 && (
             <div className="relative mt-5">
-              {/* button border magic from tailwind css buttons  */}
-              {/* add rounded-md h-8 md:h-8, remove rounded-full */}
-              {/* remove focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 */}
-              {/* add handleCopy() for the copy the text */}
               <div
                 className={`absolute -bottom-5 right-0 ${
                   copied ? "block" : "block"
                 }`}
               >
-                {/* <img src="/confetti.gif" alt="confetti" /> */}
-                <Lottie options={defaultOptions} height={200} width={400} />
+                <Lottie
+                  options={defaultOptions}
+                  height={200}
+                  width={400}
+                  key={String(copied)}
+                />
               </div>
 
               <MagicButton
                 title={copied ? "Email is Copied!" : "Copy my email address"}
-                icon={<IoCopyOutline />}
+                icon={
+                  copied ? (
+                    <IoCheckboxOutline color="rgb(16 185 129)" />
+                  ) : (
+                    <IoCopyOutline />
+                  )
+                }
                 position="left"
                 handleClick={handleCopy}
                 otherClasses="!bg-[#161A31]"
