@@ -13,7 +13,7 @@ COPY package.json package-lock.json ./
 
 # Install dependencies using npm
 RUN npm ci --force
-RUN npm install sharp
+RUN npm install sharp --force
 
 # Build the application
 FROM base AS builder
@@ -33,7 +33,7 @@ ENV HOSTNAME "0.0.0.0"
 RUN apk add --no-cache curl
 
 # Install sharp in the final image
-RUN npm install sharp
+RUN npm install sharp --force
 
 # Set the NEXT_SHARP_PATH environment variable
 ENV NEXT_SHARP_PATH="/app/node_modules/sharp"
