@@ -1,6 +1,6 @@
- 
 "use client";
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Link from "next/link";
 import { JSX, useState } from "react";
 
@@ -12,8 +12,6 @@ import {
 } from "framer-motion";
 
 import { cn } from "@/lib/utils";
-
-/* eslint-disable @typescript-eslint/no-explicit-any */
 
 export const FloatingNav = ({
   navItems,
