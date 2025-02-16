@@ -399,29 +399,6 @@ const GridGlobe = () => {
     <div className="absolute -left-5 top-36 flex h-full w-full items-center justify-center md:top-40">
       {/* remove h-full md:h-[40rem] */}
       <div className="relative mx-auto h-96 w-full max-w-7xl overflow-hidden px-4">
-        {/* remove these text divs */}
-        {/* <motion.div
-          initial={{
-            opacity: 0,
-            y: 20,
-          }}
-          animate={{
-            opacity: 1,
-            y: 0,
-          }}
-          transition={{
-            duration: 1,
-          }}
-          className="div"
-        >
-          <h2 className="text-center text-xl md:text-4xl font-bold text-black dark:text-white">
-            We sell soap worldwide
-          </h2>
-          <p className="text-center text-base md:text-lg font-normal text-neutral-700 dark:text-neutral-200 max-w-md mt-2 mx-auto">
-            This globe is interactive and customizable. Have fun with it, and
-            don&apos;t forget to share it.
-          </p>
-        </motion.div> */}
         <div className="pointer-events-none absolute inset-x-0 bottom-0 z-40 h-40 w-full select-none bg-gradient-to-b from-transparent to-white dark:to-black" />
         {/* remove -bottom-20 */}
         <div className="absolute z-10 h-72 w-full md:h-full">
