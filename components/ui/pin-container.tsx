@@ -25,7 +25,7 @@ export function AnimatedPin({
     <PinContainer title={link} href={link}>
       <div className="relative mb-10 flex h-[30vh] w-[80vw] items-center justify-center overflow-hidden sm:h-[40vh] sm:w-[570px]">
         <div
-          className="relative h-full w-full overflow-hidden bg-[#13162d] lg:rounded-3xl"
+          className="relative h-full w-full overflow-hidden bg-[#1a1f46] lg:rounded-3xl"
           style={{ backgroundColor: "#13162D" }}
         >
           <img src="/bg.png" alt="bgimg" />
@@ -50,7 +50,7 @@ export function AnimatedPin({
           {iconLists?.map((icon, index) => (
             <div
               key={index}
-              className="flex h-8 w-8 items-center justify-center rounded-full border border-white/[.2] bg-black lg:h-10 lg:w-10"
+              className="bg-black- flex h-8 w-8 items-center justify-center rounded-full border border-white/[.2] lg:h-10 lg:w-10"
               style={{
                 transform: `translateX(-${5 * index + 2}px)`,
               }}
