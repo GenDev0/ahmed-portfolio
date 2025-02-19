@@ -25,7 +25,7 @@ export function AnimatedPin({
     <PinContainer title={link} href={link}>
       <div className="relative mb-10 flex h-[30vh] w-[80vw] items-center justify-center overflow-hidden sm:h-[40vh] sm:w-[570px]">
         <div
-          className="relative h-full w-full overflow-hidden lg:rounded-3xl"
+          className="relative h-full w-full overflow-hidden bg-[#13162d] lg:rounded-3xl"
           style={{ backgroundColor: "#13162D" }}
         >
           <img src="/bg.png" alt="bgimg" />
