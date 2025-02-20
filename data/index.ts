@@ -2,6 +2,7 @@ export const navItems = [
   { name: "About", link: "#about" },
   { name: "Projects", link: "#projects" },
   { name: "Testimonials", link: "#testimonials" },
+  { name: "Experiences", link: "#experiences" },
 ];
 
 export const gridItems = [
@@ -177,31 +178,45 @@ export const companies = [
 export const workExperience = [
   {
     id: 1,
-    title: "Frontend Engineer Intern",
-    desc: "Assisted in the development of a web-based platform using React.js, enhancing interactivity.",
+    title: "Web Developer",
+    desc: "Developed and maintained websites using PHP, JavaScript (including AJAX and jQuery), focusing on front-end interactivity and back-end logic.",
+    className: "md:col-span-2",
+    thumbnail: "/exp2.svg",
+  },
+  {
+    id: 2,
+    title: "SEO Specialist",
+    desc: "Implemented on-page and off-page SEO strategies to improve website traffic and organic search rankings, including keyword research, technical audits, and content optimization.",
+    className: "md:col-span-2",
+    thumbnail: "/dev1.png",
+  },
+  {
+    id: 3,
+    title: "Frontend Developer",
+    desc: "Developed user interfaces using React and Angular, focusing on creating engaging and responsive web experiences.",
     className: "md:col-span-2",
     thumbnail: "/exp1.svg",
   },
   {
-    id: 2,
-    title: "Mobile App Dev - JSM Tech",
-    desc: "Designed and developed mobile app for both iOS & Android platforms using React Native.",
-    className: "md:col-span-2", // change to md:col-span-2
-    thumbnail: "/exp2.svg",
-  },
-  {
-    id: 3,
-    title: "Freelance App Dev Project",
-    desc: "Led the dev of a mobile app for a client, from initial concept to deployment on app stores.",
-    className: "md:col-span-2", // change to md:col-span-2
-    thumbnail: "/exp3.svg",
-  },
-  {
     id: 4,
-    title: "Lead Frontend Developer",
-    desc: "Developed and maintained user-facing features using modern frontend technologies.",
+    title: "Mobile App Developer",
+    desc: "Developed cross-platform mobile applications using React Native and Expo, targeting both iOS and Android devices.",
+    className: "md:col-span-2",
+    thumbnail: "/dev2.png",
+  },
+  {
+    id: 5,
+    title: "Full Stack Developer",
+    desc: "Developed full-stack applications using NestJS, Next.js, Tailwind CSS and Material UI, contributing to all aspects of the development lifecycle.",
     className: "md:col-span-2",
     thumbnail: "/exp4.svg",
+  },
+  {
+    id: 6,
+    title: "Lead Full Stack Developer",
+    desc: "Led the development of full-stack applications using NestJS, Next.js, and React Native, overseeing both front-end and back-end development.",
+    className: "md:col-span-2",
+    thumbnail: "/dev3.png",
   },
 ];
 
