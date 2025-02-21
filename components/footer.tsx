@@ -9,6 +9,13 @@ const Footer = () => {
   return (
     <footer className="w-full pb-10 pt-20" id="contact">
       <BackgroundBeamsWithCollision className="flex w-full flex-col items-center">
+        <div className="absolute -bottom-72 left-0 min-h-96 w-full">
+          <img
+            src="/footer-grid.svg"
+            alt="grid"
+            className="h-full w-full opacity-50"
+          />
+        </div>
         <div className="flex flex-col items-center">
           <h2 className="relative z-20 text-center font-sans text-2xl font-bold tracking-tight text-black dark:text-white md:text-4xl lg:text-7xl">
             Let&apos;s Build Your Digital{" "}
