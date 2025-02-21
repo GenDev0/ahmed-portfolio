@@ -234,3 +234,34 @@ export const socialMedia = [
     img: "/link.svg",
   },
 ];
+
+export const phases = [
+  {
+    title: "Project Initiation & Planning",
+    order: 1,
+    description: `We'll begin by understanding your project's objectives, target audience, and functional requirements. This involves discussing site architecture, navigation, content strategy, and overall vision.`,
+    animationSpeed: 5.1,
+    containerClassName: "bg-emerald-900",
+    colors: [[0, 255, 255]],
+    dotSize: 3,
+  },
+  {
+    title: "Development & Iterative Feedback",
+    order: 2,
+    description: `I'll then begin the development process, building your project with a focus on usability, performance, and maintainability.  You'll receive regular updates and have opportunities to provide feedback throughout the development lifecycle.`,
+    animationSpeed: 3,
+    containerClassName: "bg-black",
+    colors: [
+      [236, 72, 153],
+      [232, 121, 249],
+    ],
+  },
+  {
+    title: "Deployment & Launch Execution",
+    order: 3,
+    description: `Upon approval, your project will be deployed to a live environment. This includes thorough testing and optimization to ensure a seamless and successful launch.`,
+    animationSpeed: 3,
+    containerClassName: "bg-sky-600",
+    colors: [[125, 211, 252]],
+  },
+];
